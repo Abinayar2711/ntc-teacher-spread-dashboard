@@ -5,9 +5,24 @@ Streamlit dashboard over `All Teachers Data from NTC Desk 11082026.csv`
 
 ```
 python3 build_mapping.py   # seeds category_mapping.csv from the export's labels
-python3 build_data.py      # -> data/teachers.parquet
-streamlit run app.py       # http://localhost:8531
+python3 build_data.py      # -> data/teachers.parquet + data/teachers_public.parquet
+streamlit run app.py --server.port 8531
 ```
+
+## Published
+
+github.com/Abinayar2711/ntc-teacher-spread-dashboard → **share.streamlit.io**,
+same GitHub account and the same pattern as `taol-teacher-dashboard`.
+
+`build_data.py` writes two files. `data/teachers.parquet` is the full one and
+**never leaves this machine**; `data/teachers_public.parquet` is the same 30,267
+rows without `mobile` and `email`, and is the only data file in git. `core.load()`
+takes the full file when it is there and the published one otherwise, so the app
+is identical either way — on the published site the Mobile and Email columns in
+the ⚑ panel and the blanks CSV simply read `—`.
+
+To refresh the published numbers: rerun `build_data.py`, then commit and push
+`data/teachers_public.parquet`. Streamlit Cloud redeploys on the push.
 
 Three pages, the same numbers on all of them:
 
