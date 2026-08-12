@@ -1,6 +1,6 @@
 """Page 3 -- one state at a time, then all of them side by side.
 
-The profile ranking from the Charts page drawn over one region, the reach of
+The profile ranking drawn over one region, the reach of
 each programme in that region, and at the foot every region stacked the same
 way. Same bars, same colours, same rule: one row per teacher, so the bars add
 back to that region's headcount.
@@ -58,7 +58,7 @@ st.caption(
 )
 
 # The one chart on the page whose bars do not add up -- kept behind an
-# expander, in grey, exactly as on the Charts page but for this region only.
+# expander, in grey, and for the picked region only.
 with st.expander("Reference: how many teachers can teach each programme "
                  "(these overlap — they do not add up)"):
     st.caption(

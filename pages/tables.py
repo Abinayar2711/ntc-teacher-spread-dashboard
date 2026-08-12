@@ -411,7 +411,7 @@ def reach_html():
 st.title("NTC Desk · Tables")
 st.caption(
     f"{len(df):,} teachers · `All Teachers Data from NTC Desk 11082026.csv`. "
-    "Counted for a programme means **certified to teach it**. The **Charts** "
+    "Counted for a programme means **certified to teach it**. The **Diagrams** "
     "page is the same numbers as pictures."
 )
 st.info(THE_RULE + "\n\nHover any column header for its definition.", icon="ℹ️")

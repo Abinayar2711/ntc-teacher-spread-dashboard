@@ -120,7 +120,8 @@ def help_text(df):
         TOTAL: "Everyone in this row. The columns to the right split them up "
                "with no overlap, so they add back to this number.",
         MULTI: "Holds two or more of the 12 categories. Which combination is "
-               "not shown here -- the Charts page ranks the combinations.",
+               "not shown here -- the button in the cell opens them, and the "
+               "Diagrams page ranks them.",
         OTHERS: "Holds none of the 12 categories. Certified only in course "
                 "types outside them, such as SSSK or the agriculture "
                 "programmes.",
@@ -141,7 +142,7 @@ THE_RULE = (
     f"- **Exactly one** -> the *Only ...* columns. `Only HP` = teaches HP and "
     "nothing else.\n"
     f"- **Two or more** -> all together in *{MULTI}*. Which combination they "
-    "are is the profile ranking on the **Charts** page.\n"
+    "are is the profile ranking on the **Diagrams** page.\n"
     f"- **None of them** -> *{OTHERS}*. Certified only in course types outside "
     "the 12, like SSSK or agriculture.\n\n"
     "So every teacher lands in exactly one column, and every row adds up to "
