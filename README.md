@@ -11,8 +11,18 @@ streamlit run app.py --server.port 8531
 
 ## Published
 
-github.com/Abinayar2711/ntc-teacher-spread-dashboard → **share.streamlit.io**,
-same GitHub account and the same pattern as `taol-teacher-dashboard`.
+https://ntc-teacher-spread-dashboard.streamlit.app —
+github.com/Abinayar2711/ntc-teacher-spread-dashboard on **share.streamlit.io**,
+same GitHub account as `taol-teacher-dashboard`.
+
+**Sign-in required.** `auth_gate.py` is the shared gate from the other report
+apps: `st.login()` (Google OIDC) plus an `ALLOWED_DOMAINS` check for
+`artofliving.org` / `in.artofliving.org`. The domain check is the real boundary,
+not decoration — leave it in. Setup and the errors already hit are in
+`~/Transfer/Workspace/adhoc/STREAMLIT_AUTH_SETUP.md`; credentials go in the
+Cloud app's Secrets, never in git (`.streamlit/secrets.toml.example` shows the
+shape). Locally the redirect URI is `http://localhost:8501/oauth2callback`, so
+run on the default port when testing the gate.
 
 `build_data.py` writes two files. `data/teachers.parquet` is the full one and
 **never leaves this machine**; `data/teachers_public.parquet` is the same 30,267
@@ -24,13 +34,12 @@ the ⚑ panel and the blanks CSV simply read `—`.
 To refresh the published numbers: rerun `build_data.py`, then commit and push
 `data/teachers_public.parquet`. Streamlit Cloud redeploys on the push.
 
-Three pages, the same numbers on all of them:
+Two pages, the same numbers on both:
 
 | | |
 |---|---|
-| **Charts** (`pages/charts.py`) | The headline read. The three-way split as a donut, `Only …` as bars, then **every profile biggest first** — `Only HP` and `HP + Rural HP` on one axis. |
-| **Tables** (`pages/tables.py`) | Every table. The region list expands **in place** — click a region and its districts open underneath it, in the same columns, several at a time. |
-| **By state** (`pages/by_state.py`) | The profile ranking rebuilt for one region at a time, that region's programme reach behind an expander, and at the foot **every region stacked** — the seven-way split, all regions on one axis. Bars are headcounts, so compare the *shape* between regions, not the length. |
+| **Tables** (`pages/tables.py`) | Every table, and the landing page. The region list expands **in place** — click a region and its districts open underneath it, in the same columns, several at a time. |
+| **Diagrams** (`pages/diagrams.py`) | The pictures. Every profile biggest first for one region at a time — `Only HP` and `HP & Rural HP` on one axis — that region's programme reach behind an expander, and at the foot **every region stacked** seven ways on one axis. Bars are headcounts, so compare the *shape* between regions, not the length. |
 
 `core.py` holds what the pages share: the bucketing rule, the column order, the
 palette. `figures.py` holds the chart helpers, so the profile ranking is drawn
@@ -48,7 +57,7 @@ twelve categories does this teacher hold?
 
 - **Exactly one** → the twelve `Only …` columns.
 - **Two or more** → all in a single `Two or more categories` column, opened up
-  by the profile ranking on the Charts page. Combinations are deliberately not
+  by the profile ranking on the Diagrams page. Combinations are deliberately not
   spread across columns; that is the only way the arithmetic stays honest.
 - **None of them** → `None of the 12`.
 
@@ -83,7 +92,8 @@ reconciled against the first table, and the page says so in a warning above it.
 The charts obey the same rule — every slice and every bar segment counts each
 teacher once, so they add to the total. The single chart that does *not* (how
 many teachers can teach each programme, which overlaps) is behind an expander
-at the foot of the Charts page, drawn in grey and labelled as unaddable.
+behind an expander on the Diagrams page, drawn in grey and labelled as
+unaddable.
 
 Colours are the first three slots of a categorical palette validated for
 colour-blind separation on the light chart surface (blue `#2a78d6`, orange
