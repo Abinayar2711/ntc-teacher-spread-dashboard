@@ -28,9 +28,9 @@ Three pages, the same numbers on all of them:
 
 | | |
 |---|---|
-| **Charts** (`pages/charts.py`) | The headline read. The three-way split as a donut, `Only …` as bars, then **every profile biggest first** — `Only HP` and `HP + Rural HP` on one axis — and every region stacked the same three ways. |
+| **Charts** (`pages/charts.py`) | The headline read. The three-way split as a donut, `Only …` as bars, then **every profile biggest first** — `Only HP` and `HP + Rural HP` on one axis. |
 | **Tables** (`pages/tables.py`) | Every table. The region list expands **in place** — click a region and its districts open underneath it, in the same columns, several at a time. |
-| **By state** (`pages/by_state.py`) | The profile ranking again, rebuilt for one region at a time. Bars are headcounts, so compare the *shape* between regions, not the length. |
+| **By state** (`pages/by_state.py`) | The profile ranking rebuilt for one region at a time, that region's programme reach behind an expander, and at the foot **every region stacked** — the seven-way split, all regions on one axis. Bars are headcounts, so compare the *shape* between regions, not the length. |
 
 `core.py` holds what the pages share: the bucketing rule, the column order, the
 palette. `figures.py` holds the chart helpers, so the profile ranking is drawn
